@@ -1,36 +1,43 @@
 package com.bateman.msu.hw4courtcounter
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 
 private const val TAG = "CounterViewModel"
+const val SCORE_TEAM_A_KEY = "SCORE_TEAM_A_KEY"
+const val SCORE_TEAM_B_KEY = "SCORE_TEAM_B_KEY"
 
+class CounterViewModel(private val savedStateHandle: SavedStateHandle) : ViewModel() {
 
-class CounterViewModel : ViewModel() {
+    var scoreTeamA: Int
+        get() = savedStateHandle.get(SCORE_TEAM_A_KEY) ?: 0
+        set(value) = savedStateHandle.set(SCORE_TEAM_A_KEY, value)
 
-    var scoreTeamA = 0
-    var scoreTeamB = 0
+    var scoreTeamB: Int
+        get() = savedStateHandle.get(SCORE_TEAM_B_KEY) ?: 0
+        set(value) = savedStateHandle.set(SCORE_TEAM_B_KEY, value)
 
-    fun TeamAPlusOne() {
+    fun teamAPlusOne() {
         scoreTeamA++
     }
 
-    fun TeamAPlusTwo() {
+    fun teamAPlusTwo() {
         scoreTeamA += 2
     }
 
-    fun TeamAPlusThree() {
+    fun teamAPlusThree() {
         scoreTeamA += 3
     }
 
-    fun TeamBPlusOne() {
+    fun teamBPlusOne() {
         scoreTeamB++
     }
 
-    fun TeamBPlusTwo() {
+    fun teamBPlusTwo() {
         scoreTeamB += 2
     }
 
-    fun TeamBPlusThree() {
+    fun teamBPlusThree() {
         scoreTeamB += 2
     }
 

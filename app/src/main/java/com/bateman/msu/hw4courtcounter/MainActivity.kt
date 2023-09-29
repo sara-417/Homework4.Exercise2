@@ -2,6 +2,7 @@ package com.bateman.msu.hw4courtcounter
 
 
 import android.content.ContentValues.TAG
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -24,11 +25,22 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
     }
 
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+
+        if(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE ||
+                newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+
+            displayForTeamA(counterViewModel.scoreTeamA)
+            displayForTeamB(counterViewModel.scoreTeamB)
+        }
+    }
+
     /**
      * Increase the score for Team A by 1 point.
      */
     fun addOneForTeamA(v: View?) {
-        counterViewModel.TeamAPlusOne()
+        counterViewModel.teamAPlusOne()
         displayForTeamA(counterViewModel.scoreTeamA)
     }
 
@@ -36,7 +48,7 @@ class MainActivity : AppCompatActivity() {
      * Increase the score for Team A by 2 points.
      */
     fun addTwoForTeamA(v: View?) {
-        counterViewModel.TeamAPlusTwo()
+        counterViewModel.teamAPlusTwo()
         displayForTeamA(counterViewModel.scoreTeamA)
     }
 
@@ -44,7 +56,7 @@ class MainActivity : AppCompatActivity() {
      * Increase the score for Team A by 3 points.
      */
     fun addThreeForTeamA(v: View?) {
-        counterViewModel.TeamAPlusThree()
+        counterViewModel.teamAPlusThree()
         displayForTeamA(counterViewModel.scoreTeamA)
     }
 
@@ -52,7 +64,7 @@ class MainActivity : AppCompatActivity() {
      * Increase the score for Team B by 1 point.
      */
     fun addOneForTeamB(v: View?) {
-        counterViewModel.TeamBPlusOne()
+        counterViewModel.teamBPlusOne()
         displayForTeamB(counterViewModel.scoreTeamB)
     }
 
@@ -60,7 +72,7 @@ class MainActivity : AppCompatActivity() {
      * Increase the score for Team B by 2 points.
      */
     fun addTwoForTeamB(v: View?) {
-        counterViewModel.TeamBPlusTwo()
+        counterViewModel.teamBPlusTwo()
         displayForTeamB(counterViewModel.scoreTeamB)
     }
 
@@ -68,7 +80,7 @@ class MainActivity : AppCompatActivity() {
      * Increase the score for Team B by 3 points.
      */
     fun addThreeForTeamB(v: View?) {
-        counterViewModel.TeamBPlusThree()
+        counterViewModel.teamBPlusThree()
         displayForTeamB(counterViewModel.scoreTeamB)
     }
 
